@@ -70,12 +70,7 @@ module HamlAssets
     end
 
     def evaluate(scope, locals, &block)
-      begin
-        "window.JST['#{scope.logical_path}'] = " + render_haml(view_context(scope), locals).to_json + ";"
-      rescue Exception => e
-        Rails.logger.error "ERROR: compiling #{file} RAISED #{e}"
-        Rails.logger.error "Backtrace: #{e.backtrace.join("\n")}"
-      end
+      "window.JST['#{scope.logical_path}'] = " + render_haml(view_context(scope), locals).to_json + ";"
     end
 
     protected
